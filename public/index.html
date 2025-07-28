@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>아비도스 공장 효율 계산기</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>아비도스 공장(벌목) 효율 계산기</h1>
+  <p>1분마다 시세가 자동으로 갱신됩니다. (페이지를 새로고침해야 적용됩니다.)</p>
+  <p style="font-size: 0.9em;">※ 모든 결과는 대성공을 고려하지 않은 결과입니다.</p>
+  <p><span id="timestamp"></span></p>
+
+  <div class="card">
+    <h2>📦 재료 시세 입력</h2>
+    <table>
+      <thead>
+        <tr><th>재료</th><th>시세</th></tr>
+      </thead>
+      <tbody id="price-table"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>⚙ 제작 설정</h2>
+    <p>
+      제작 수수료 감소율 (%): 
+      <input type="number" id="discount" value="14" min="0" max="40" style="width: 60px;">
+      → 손익분기점: 
+      <strong><span id="breakeven">계산 중...</span> 골드</strong>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>💰 판매 시뮬레이션</h2>
+    <p>
+      판매 수량: 
+      <input type="number" id="sell-count" value="400" min="1" style="width: 80px;">
+      → 예상 순이익: <strong><span id="profit">-</span> 골드</strong>
+    </p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

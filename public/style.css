@@ -1,0 +1,38 @@
+body {
+    font-family: sans-serif;
+    padding: 30px;
+    background: #f4f4f4;
+}
+h1 {
+    color: #444;
+}
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.card h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #333;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+}
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+input[type="number"] {
+    padding: 5px;
+    width: 100px;
+}
+#timestamp {
+    font-size: 0.9em;
+    color: #666;
+}
