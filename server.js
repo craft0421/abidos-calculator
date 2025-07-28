@@ -117,9 +117,9 @@ app.listen(PORT, () => {
   console.log(`✅ Server is now running!`);
 });
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   console.log('📡 Ping received at', new Date().toLocaleTimeString());
   res.send("Hello from Abydos Calculator!");
 });
-
-app.use(express.static('public'));
