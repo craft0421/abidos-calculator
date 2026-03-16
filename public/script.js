@@ -91,9 +91,9 @@ function runOptimization() {
     if (!best) { area.innerHTML = "<p style='text-align:center;'>제작 가능한 재료가 부족합니다.</p>"; return; }
 
     area.innerHTML = `
-        <div class="exchange-step"><span>일반 → 가루</span><span class="step-arrow">▶</span><span>${best.exN2P}회</span></div>
-        <div class="exchange-step"><span>고급 → 가루</span><span class="step-arrow">▶</span><span>${best.exS2P}회</span></div>
-        <div class="exchange-step"><span>가루 → 희귀(아비도스)</span><span class="step-arrow">▶</span><span>${best.exP2A}회</span></div>
+        <div class="exchange-step"><span>일반 재료 → 가루</span><span class="step-arrow">▶</span><span>${best.exN2P}회</span></div>
+        <div class="exchange-step"><span>고급 재료 → 가루</span><span class="step-arrow">▶</span><span>${best.exS2P}회</span></div>
+        <div class="exchange-step"><span>가루 → 아비도스 재료</span><span class="step-arrow">▶</span><span>${best.exP2A}회</span></div>
         <div style="margin-top:20px; padding:15px; border-radius:8px; background:rgba(126, 87, 194, 0.1);">
             <h3 style="color:var(--primary-color); margin:0;">최대 제작: ${best.mid * 10}개</h3>
             <p style="margin:5px 0 0 0; font-weight:bold;">예상 순이익${isTaxApplied ? '(수수료 5% 제외)' : '(수수료 미차감)'}: ${Math.floor(best.profit).toLocaleString()} G</p>
