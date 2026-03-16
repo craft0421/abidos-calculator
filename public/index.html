@@ -1,45 +1,89 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <title>아비도스 공장 효율 계산기</title>
   <link rel="stylesheet" href="style.css">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2193524260839638"
-     crossorigin="anonymous"></script>
 </head>
 <body>
-  <h1>아비도스 공장(벌목) 효율 계산기</h1>
-  <p>1분마다 시세가 자동으로 갱신됩니다. (페이지를 새로고침해야 적용됩니다.)</p>
-  <p style="font-size: 0.9em;">※ 모든 결과는 대성공을 고려하지 않은 결과입니다.</p>
-  <p><span id="timestamp"></span></p>
+  <div class="container">
+    <header>
+      <h1>아비도스 공장 효율 계산기</h1>
+      <div class="header-controls">
+        <div class="switch-container">
+          <span>직접 파밍 모드</span>
+          <label class="switch">
+            <input type="checkbox" id="production-mode-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="switch-container">
+          <span>다크 모드</span>
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </header>
 
-  <div class="card">
-    <h2>📦 재료 시세 입력</h2>
-    <table>
-      <thead>
-        <tr><th>재료</th><th>시세</th></tr>
-      </thead>
-      <tbody id="price-table"></tbody>
-    </table>
-  </div>
+    <div class="tab-group" id="category-tabs">
+      <button class="tab-btn active" data-cat="벌목">벌목</button>
+      <button class="tab-btn" data-cat="채광">채광</button>
+      <button class="tab-btn" data-cat="낚시">낚시</button>
+      <button class="tab-btn" data-cat="고고학">고고학</button>
+      <button class="tab-btn" data-cat="수렵">수렵</button>
+      <button class="tab-btn" data-cat="채집">채집</button>
+    </div>
 
-  <div class="card">
-    <h2>⚙ 제작 설정</h2>
-    <p>
-      제작 수수료 감소율 (%): 
-      <input type="number" id="discount" value="14" min="0" max="40" style="width: 60px;">
-      → 손익분기점: 
-      <strong><span id="breakeven">계산 중...</span> 골드</strong>
-    </p>
-  </div>
+    <div class="settings-card">
+      <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <div>수수료 감소: <input type="number" id="discount" value="17" min="0" max="40"> %</div>
+        <div>판매 수량: <input type="number" id="sell-count" value="400" min="10"> 개</div>
+        
+        <div class="switch-container">
+          <span>거래소 수수료(5%) 반영</span>
+          <label class="switch">
+            <input type="checkbox" id="tax-toggle" checked> <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
 
-  <div class="card">
-    <h2>💰 판매 시뮬레이션</h2>
-    <p>
-      판매 수량: 
-      <input type="number" id="sell-count" value="400" min="1" style="width: 80px;">
-      → 예상 순이익: <strong><span id="profit">-</span> 골드</strong>
-    </p>
+    <div id="main-grid" class="grid-2">
+      <div class="card" id="card-normal"> <h3>아비도스 융화 재료</h3>
+        <table><tbody id="price-table-normal"></tbody></table>
+        <div class="result-area">
+          <p>10개당 제작비: <span id="cost-normal">0</span> G</p>
+          <p>예상 순이익: <span id="profit-normal">0</span> G</p>
+        </div>
+      </div>
+      <div class="card" id="card-high"> <h3>상급 아비도스 융화 재료</h3>
+        <table><tbody id="price-table-high"></tbody></table>
+        <div class="result-area">
+          <p>10개당 제작비: <span id="cost-high">0</span> G</p>
+          <p>예상 순이익: <span id="profit-high">0</span> G</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="optimization-container" class="card" style="display: none; margin-top: 35px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h3>📦 실전 영지 재고 시뮬레이터</h3>
+        <div class="tab-group s-tab-group" id="opt-type-tabs">
+          <button class="tab-btn s-tab-btn active" data-type="normal" id="opt-tab-normal">아비도스</button>
+          <button class="tab-btn s-tab-btn" data-type="high" id="opt-tab-high">상급 아비도스</button>
+        </div>
+      </div>
+      <div class="inventory-grid">
+        <div class="inv-item"><label>일반 재료</label><input type="number" id="inv-normal" value="0"></div>
+        <div class="inv-item"><label>고급 재료</label><input type="number" id="inv-soft" value="0"></div>
+        <div class="inv-item"><label>희귀 재료</label><input type="number" id="inv-abidos" value="0"></div>
+        <div class="inv-item"><label>가루 보유량</label><input type="number" id="inv-powder" value="0"></div>
+      </div>
+      <div id="optimization-result-area" class="result-area" style="border-top: 1px solid var(--border-color); padding-top: 20px; margin-top: 25px;"></div>
+    </div>
+    <p id="timestamp" style="text-align:right; font-size:0.8em; color:var(--text-secondary); margin-top: 20px;"></p>
   </div>
   <script src="script.js"></script>
 </body>
