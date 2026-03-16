@@ -91,8 +91,8 @@ function runOptimization() {
     if (!best) { area.innerHTML = "<p style='text-align:center;'>제작 가능한 재료가 부족합니다.</p>"; return; }
 
     area.innerHTML = `
-        <div class="exchange-step"><span>일반 재료 → 가루</span><span class="step-arrow">▶</span><span>${best.exN2P}회</span></div>
-        <div class="exchange-step"><span>고급 재료 → 가루</span><span class="step-arrow">▶</span><span>${best.exS2P}회</span></div>
+        <div class="exchange-step"><span>일반 등급 재료 → 가루</span><span class="step-arrow">▶</span><span>${best.exN2P}회</span></div>
+        <div class="exchange-step"><span>고급 등급 재료 → 가루</span><span class="step-arrow">▶</span><span>${best.exS2P}회</span></div>
         <div class="exchange-step"><span>가루 → 아비도스 재료</span><span class="step-arrow">▶</span><span>${best.exP2A}회</span></div>
         <div style="margin-top:20px; padding:15px; border-radius:8px; background:rgba(126, 87, 194, 0.1);">
             <h3 style="color:var(--primary-color); margin:0;">최대 제작: ${best.mid * 10}개</h3>
